@@ -18,7 +18,7 @@ DtS.Tables.Add(innerDataTable)
 Call FillDataTables(mainDataTable, innerDataTable)
 
 ' Создаём связь между заполнеными табличками на основании общего поля, даём новой связи имя. 
-' В дальнейшем при желании использовать табличку-связь в качестве источника для DataGrid, будет обращаться именно по этому имени
+' В дальнейшем при желании использовать табличку-связь в качестве источника для DataGrid, будем обращаться именно по этому имени
 Dim myRelation As DataRelation
 myRelation = New DataRelation("FusionTable",
 				  DtS.Tables("mainDataTable").Columns("Id"),
