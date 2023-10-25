@@ -1,0 +1,57 @@
+﻿
+            
+<!--Таблица данных по наличию-->
+<DataGrid Grid.Row="1" Name="MainDataGrid">
+	<!-- Пример использования основной таблицы -->
+	<!-- Здесь Binding это имя колонок в нашей mainTable -->
+	<DataGridTextColumn Header="Артикул товара" Binding="{Binding Path=artikul}"/>
+	<DataGridTextColumn Header="Наименование" Binding="{Binding Path=izdName}"/>
+	<!-- Пример использования таблицы-связи из DataSet -->
+	<!--Создание заголовков для вложенных ячеек-->
+	<DataGridTemplateColumn>
+		<DataGridTemplateColumn.HeaderTemplate>
+			<DataTemplate>
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="80"/>
+						<!--Размер-->
+						<ColumnDefinition Width="220"/>
+						<!--Артикул поставщика (Размер товара)-->
+						<ColumnDefinition Width="120"/>
+						<!--Остаток доступно для заказа-->
+
+					</Grid.ColumnDefinitions>
+					<TextBlock  Grid.Column="0" Margin="0,10,0,0" Text="Размер" TextAlignment="Center" />
+					<TextBlock  Grid.Column="1" Margin="0,10,0,0" Text="Артикул поставщика" TextWrapping="Wrap" TextAlignment="Center"/>
+					<TextBlock  Grid.Column="2" Margin="0,10,0,0" Text="Остаток доступно для заказа" TextWrapping="Wrap" TextAlignment="Center"/>
+
+				</Grid>
+			</DataTemplate>
+		</DataGridTemplateColumn.HeaderTemplate>
+		<!--Вложенный грид-->
+		<DataGridTemplateColumn.CellTemplate>
+			<DataTemplate>
+				<Grid VerticalAlignment="Center" >
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"></RowDefinition>
+					</Grid.RowDefinitions>
+					<!--В Binding указываем нашу таблицу-связь, которую мы создали -->
+					<DataGrid Grid.Row="0" Name="InnerDataGrid"  ItemsSource="{Binding FusionTable}">
+
+						<DataGrid.Columns>
+							<!--Размер-->
+							<DataGridTextColumn Binding="{Binding SizeName}" Width="80"></DataGridTextColumn>
+							<!--Артикул поставщика-->
+							<DataGridTextColumn Binding="{Binding izdArticleSupplier}" Width="220"></DataGridTextColumn>
+							<!--Остаток доступно для заказа-->
+							<DataGridTextColumn Binding="{Binding IzdStockAvlbl}" Width="120"></DataGridTextColumn>
+							
+						</DataGrid.Columns>
+					</DataGrid>
+				</Grid>
+			</DataTemplate>
+		</DataGridTemplateColumn.CellTemplate>
+	</DataGridTemplateColumn>
+	</DataGrid.Columns>
+</DataGrid>
+
